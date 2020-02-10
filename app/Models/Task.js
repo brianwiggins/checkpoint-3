@@ -1,4 +1,4 @@
-import { generateId } from "../utils";
+import { generateId } from "../utils.js";
 
 export default class Task{
   constructor(data){

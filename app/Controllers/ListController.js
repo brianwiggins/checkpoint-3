@@ -4,15 +4,14 @@ import _store from '../store.js';
 //TODO Don't forget to render to the screen after every data change.
 function _drawLists() {
 let lists = _store.State.lists;
-let listsElem=document.getElementById("lists");
 let template ='';
 
 lists.forEach(list=>{
   template+=list.Template
 })
-listsElem.innerHTML=template;
+document.querySelector("#lists").innerHTML=template
 }
-
+_drawLists();
 //Public
 export default class ListController {
   constructor() {
@@ -27,7 +26,6 @@ export default class ListController {
     let newList ={
       category: formData.category.value,
       dueDate: formData.dueDate.value,
-      tasks: formData.tasks.value,
     }
     _listService.addList(newList)
     formData.reset()
@@ -48,7 +46,7 @@ _listService.addTask(id, task);
 _drawLists();
 }
 delTask(taskID, listID){
-  _listService.remTask(listID,taskIndex);
+  _listService.remTask(listID,taskID);
   _drawLists();
 }
 }

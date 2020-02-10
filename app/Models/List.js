@@ -21,23 +21,22 @@ export default class List {
      <ul class="card-text">
          ${this.getTasksTemplate()}
      </ul>
-     <form onsubmit="app.ListController.addList(event, '${this.id}')">
+     <form onsubmit="app.ListController.addTask(event, '${this.id}')">
      <input
        type="text"
-       name="List"
-       placeholder="List"
+       name="task"
+       placeholder="New Task"
        required
      />
      <button class="btn btn-success" type="submit">Add Task</button>
    </form>
      
-     <button class="btn btn-danger" onclick="app.ListController.remTask('${
+     <button class="btn btn-danger" onclick="app.ListController.delTask('${
        this.id
      }')">Delete</button>
    </div>
  </div>
-     
-   </div>
+</div>
    `
    )
 
