@@ -1,4 +1,3 @@
-import ListService from '../Services/ListService.js';
 import _listService from '../Services/ListService.js';
 import _store from '../store.js';
 
@@ -7,6 +6,7 @@ function _drawLists() {
 let lists = _store.State.lists;
 let listsElem=document.getElementById("lists");
 let template ='';
+
 lists.forEach(list=>{
   template+=list.Template
 })
@@ -37,4 +37,11 @@ export default class ListController {
   }
 
   //TODO: Your app will need the ability to create, and delete both lists and listItems
+  getElemID(){
+    
+  }
+delList(event){
+event.preventDefault();
+_listService.rembyID();
+}
 }

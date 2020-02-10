@@ -10,15 +10,16 @@
   <title>TaskMaster</title>
 </head>
 <body>
+  <h1>List Maker</h1>
 <div class="container-fluid">
   <div class="row" id="add-list-row">
     <div class="col-4">
-      <button role="button" class="btn btn-primary" data-toggle="modal" data-target="#list-modal">Add a New List of
+      <button role="button" class="btn btn-primary" data-toggle="modal" data-target="#list-form">Add a New List of
         Tasks
       </button>
     </div>
     <!--Modal!!!!!!!!!!!!!!!!!!!!-->
-    <div class="modal fade" id="list-modal" tabindex="-1" role="dialog" aria-labeledby="modelTitleId"
+    <div class="modal fade" id="list-form" tabindex="-1" role="dialog" aria-labeledby="modelTitleId"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -30,23 +31,27 @@
           </div>
           <div class="modal-body">
             Just add a a category and a date that you should have this done by. You can add specific tasks in a moment!
-            <form onsubmit="app.ListController.addList(event)">
+            <form onsubmit="app.listController.addList(event)">
               <div class="form-group">
                 <label for="category">Category</label>
-                <input type="text" name="category" class="form-control" placeholder="Enter a category here..." required>
+                <input name="category"  type="text" class="form-control" placeholder="Enter a category here..." required>
               </div>
               <div class="form-group">
                 <label for="dueDate">Due On:</label>
-                <input type="text" name="dueAt" class="form-control" placeholder="When do you have to finish this by?">
+                <input type="text" name="dueDate" class="form-control" placeholder="When do you have to finish this by?">
               </div>
+              <div class="form-group">
+                <label for="tasks">Add just one thing you need to get done:</label>
+                <input type="text" name="tasks" class="form-control" placeholder="One thing to do">
+              </div>
+              <button type="submit" class="btn btn-primary">Save</button>
             </form>
           </div>
-          <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="row" id="tasklists"></div>
+  <div class="row" id="lists"></div>
 </div>
 
 <!--Bootstrap scripts-->
