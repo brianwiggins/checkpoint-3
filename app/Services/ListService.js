@@ -1,6 +1,7 @@
 import List from "../Models/List.js";
 import _store from "../store.js";
 import Task from "../Models/Task.js";
+import STORE from "../store.js";
 
 //Public
 class ListService {
@@ -11,28 +12,30 @@ class ListService {
   addList(newList){
     newList = new List(newList);
     _store.State.lists.push(newList);
+    _store.saveState();
     console.log(_store.State.lists)
   }
 
-  getID(elem){
-    for(let i=0;i<_store.State.lists.length;i++){
-      if(_store.State.lists[i]==elem){
-       return _store.State.lists[i].id
-      }
-    }
-  }
-  //removes an element in the state lists array by its id
+  
+  //removes an element in the state lists tasks array by its id
 
-  rembyID(id){
-    for(let i=0;i<_store.State.lists.length;i++){
-      if(_store.State.lists[i].id==id){
-        _store.State.lists.splice(i,1);
-      }
-    }
+  remTask(listID,taskIndex){
+    let foundList = _store.State.lists.find(list => list.id == listID);
+    foundList.tasks.splice(taskIndex, 1);
+    _store.saveState;
   }
-  constructor(){
-    console.log("List service is live")
+
+  //adds element to state lists tasks array by the list id
+  addTask(id, task){
+    let foundList = _store.State.lists.find(task=>task.id==id);
+    foundList.tasks.push(task);
+    _store.saveState();
   }
+  remList(id){
+    let index = _store.State.pizza.findIndex(list=>list.id==id);
+    _store.saveState();
+  }
+  
 
 }
 

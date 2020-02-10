@@ -37,11 +37,18 @@ export default class ListController {
   }
 
   //TODO: Your app will need the ability to create, and delete both lists and listItems
-  getElemID(){
-    
-  }
-delList(event){
+delList(id){
+_listService.remList(id);
+_drawLists();
+}
+addTask(event, id){
 event.preventDefault();
-_listService.rembyID();
+let task = event.target.tasks.value;
+_listService.addTask(id, task);
+_drawLists();
+}
+delTask(taskID, listID){
+  _listService.remTask(listID,taskIndex);
+  _drawLists();
 }
 }

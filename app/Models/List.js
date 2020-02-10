@@ -6,7 +6,7 @@ export default class List {
     //TODO Your constructor takes in a data object that should have the properties you need to create your list here is a freebie, it will set the id its provided, or if that is undefined it will create a new one (this is an alternative to object destructuring)
     this.category=data.category;
     this.dueDate=data.dueDate;
-    this.tasks=data.tasks;
+    this.tasks=data.tasks || [];
     this.id = data.id || generateId()
   }
   //Be sure to add the methods needed to create the view template for this model
@@ -15,16 +15,38 @@ export default class List {
    return(
    `
    <div class="col-3">
-    <button class="btn btn-primary">Add Another task!</button>
-     <h1>${this.category}</h1>
-     <h2>${this.dueDate}</h2>
-     <div id="tasks-column">
-     <h3>${this.tasks}</h3>
-     </div>
+   <div class="card">
+   <div class="card-body">
+     <h5 class="card-title">${this.category}</h5>
+     <ul class="card-text">
+         ${this.getTasksTemplate()}
+     </ul>
+     <form onsubmit="app.ListController.addList(event, '${this.id}')">
+     <input
+       type="text"
+       name="List"
+       placeholder="List"
+       required
+     />
+     <button class="btn btn-success" type="submit">Add Task</button>
+   </form>
+     
+     <button class="btn btn-danger" onclick="app.ListController.remTask('${
+       this.id
+     }')">Delete</button>
+   </div>
+ </div>
      
    </div>
    `
    )
 
+ }
+
+ getTasksTemplate(){
+   let template="";
+   this.tasks.forEach((task,index)=>{template+=`<li>${task}<span onclick="app.pizzasController.removeTopping('${this.id}', ${index})">X</span></li>`;
+  });
+  return template;
  }
 }
